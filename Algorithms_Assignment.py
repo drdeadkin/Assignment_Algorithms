@@ -1,3 +1,6 @@
+import time
+
+
 
 def split_into_arrays(id_id, name, price, category):
     r = open("product_data.txt", "r")
@@ -77,31 +80,48 @@ def bubble_sort(id_id, name, price, category):
                 name[j], name[j + 1] = name[j + 1], name[j]
                 category[j], category[j + 1] = category[j + 1], category[j]
 
+
 def main():
-   id_1 = []
-   name1 = []
-   price = []
-   category = []
-   id_1, name1, price, category = split_into_arrays(id_1, name1, price, category)
-   break1 = str
-   while break1 != "exit":
-       break1 = input("Do you want to bubble sort(b), Search(s), Delete(d), update(u), Insert(i), print(p) or exit: ").lower()
-       if break1 == "b":
-           bubble_sort(id_1, name1, price, category)
-       elif break1 == "s":
-           search(id_1, name1, price, category)
-       elif break1 == "d":
-           delete(id_1, name1, price, category)
-       elif break1 == "u":
-           update(id_1, name1, price, category)
-       elif break1 == "i":
-           insert(id_1, name1, price, category)
-       elif break1 == "p":
-           print("Product IDS: ", id_1)
-           print("Product Names: ", name1)
-           print("Prices:", price)
-           print("Categorys:", category)
+    id_1 = []
+    name1 = []
+    price = []
+    category = []
+    id_1, name1, price, category = split_into_arrays(id_1, name1, price, category)
+    break1 = str
+    while break1 != "exit":
+        break1 = input("Do you want to bubble sort(b), Search(s), Delete(d), update(u), Insert(i), print(p) or exit: ").lower()
+        if break1 == "b":
+            start_time = time.time()
+            bubble_sort(id_1, name1, price, category)
+            print(id_1, "\n", name1, "\n", price, "\n", category)
+            end_time = time.time()
+            print("Time taken to sort already sorted data:", end_time - start_time, "seconds")
+            id_1, name1, price, category = split_into_arrays(id_1, name1, price, category)
+            id_1.reverse()
+            name1.reverse()
+            price.reverse()
+            category.reverse()
+            start_time = time.time()
+            bubble_sort(id_1, name1, price, category)
+            end_time = time.time()
+            print("Time taken to sort data in reverse order:", end_time - start_time, "seconds")
+            id_1, name1, price, category = split_into_arrays(id_1, name1, price, category)
+
+        elif break1 == "s":
+            search(id_1, name1, price, category)
+        elif break1 == "d":
+            delete(id_1, name1, price, category)
+        elif break1 == "u":
+            update(id_1, name1, price, category)
+        elif break1 == "i":
+            insert(id_1, name1, price, category)
+        elif break1 == "p":
+            print("Product IDS: ", id_1)
+            print("Product Names: ", name1)
+            print("Prices:", price)
+            print("Categorys:", category)
 
 
 if __name__ == '__main__':
     main()
+
